@@ -2,27 +2,27 @@
  * Created by Nantian on 2018/7/2.
  */
 module.exports = {
-  '/nantian-sdn/nw/integration': {//²âÊÔÉÏ´«´úÀí½Ó¿Ú
+  '/nantian-sdn/nw/integration': {//æµ‹è¯•ä¸Šä¼ ä»£ç†æ¥å£
     target: 'http://10.12.248.14',
     changeOrigin: true,
     pathRewrite: {
       '^/nantian-sdn/nw/file': '/nantian-sdn/nw/integration'
     }
   },
-  '/nantian-sdn/nw/ip': {//²âÊÔÉÏ´«´úÀí½Ó¿Ú
+  '/nantian-sdn/nw/ip': {//æµ‹è¯•ä¸Šä¼ ä»£ç†æ¥å£
     target: 'http://10.12.248.14',
     changeOrigin: true,
     pathRewrite: {
       '^/nantian-sdn/nw/file': '/nantian-sdn/nw/ip'
     }
   },
-  '/nantian-sdn/nw/southservice': {//²âÊÔÉÏ´«´úÀí½Ó¿Ú
+  '/nantian-sdn/nw/southservice': {//æµ‹è¯•ä¸Šä¼ ä»£ç†æ¥å£
     target: 'http://10.12.248.11:8092',
     changeOrigin: true,
     pathRewrite: {
       '^/nantian-sdn/nw/southservice': '/nantian-sdn/nw/southservice'
     }
   },
-  /*¾²Ì¬ÎÄ¼şÄ¿Â¼ÉèÖÃ*/
-  '/': "E:/nantian-sdn-web/dist"
+  /*é™æ€æ–‡ä»¶ç›®å½•è®¾ç½®*/
+  '/': "/usr/local/nantian-sdn-web/dist"
 };
