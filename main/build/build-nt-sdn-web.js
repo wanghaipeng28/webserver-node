@@ -3,7 +3,7 @@
  */
 
 /*配置常量*/
-const PROJECT_PASH = "/usr/local/apache/nantian-sdn-web/"; //工程目录
+const PROJECT_PASH = "/usr/local/nantian-sdn-web/"; //工程目录
 const GIT_USER = "git"; //git 用户
 const GIT_PWD = "git"; //git 密码
 const PAGES = ["v1.0"]; //配置单页名称（目录名称）
@@ -66,15 +66,7 @@ function buildProductCode(path){
 
 /*最后操作（包括重启服务器）*/
 function finallyOpt(){
-  exec("systemctl restart httpd.service", function(error, stdout){
-    if(error === null){
-      console.log(stdout);
-      console.log("已重启APACHE服务！");
-    }else{
-      console.log("重启APACHE服务失败！");
-      console.log(error);
-    }
-  });
+  console.log("前端页面构建完成！！");
 }
 
 /*开始下载代码*/
