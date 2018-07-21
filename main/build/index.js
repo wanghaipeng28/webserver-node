@@ -9,6 +9,6 @@ module.exports = function(request, response) {
     startBuildPage();
   },10);
   response.statusCode = 200;
-  response.write("Ò»¿ªÊ¼ÖØĞÂ¹¹½¨Ç°¶Ë´úÂë£¡ÉÔµÈ¡£¡£¡£"); //Êä³öÏìÓ¦Ö÷Ìå
+  response.write("ä¸€å¼€å§‹é‡æ–°æ„å»ºå‰ç«¯ä»£ç ï¼ç¨ç­‰ã€‚ã€‚ã€‚"); //è¾“å‡ºå“åº”ä¸»ä½“
   response.end();
 };
