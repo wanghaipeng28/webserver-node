@@ -25,7 +25,7 @@ var server = {
     this.urlModel = require('url');
     this.fs = require('fs');
     this.urls = require('./urls.js');
-    this.port = process.argv[2] || 80;
+    this.port = process.argv[2] || 8080;
     this.app = express();
     this.getProxyTable();
   },
