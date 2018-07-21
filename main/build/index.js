@@ -12,6 +12,6 @@ module.exports = function(request, response) {
     "Content-Type": "application/json;charset=UTF-8",
     "Server": "node-http-server-v1.1"
   });
-  response.write("一开始重新构建前端代码！稍等。。。"); //输出响应主体
+  response.write("已开始重新构建前端代码！稍等半分钟。。。"); //输出响应主体
   response.end();
 };
