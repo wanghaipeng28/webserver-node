@@ -9,7 +9,7 @@ module.exports = function(request, response) {
     startBuildPage();
   },10);
   response.writeHead(200, {
-    "Content - Type": "application/json;charset=UTF-8",
+    "Content-Type": "application/json;charset=UTF-8",
     "Server": "node-http-server-v1.1"
   });
   response.write("一开始重新构建前端代码！稍等。。。"); //输出响应主体
