@@ -1,0 +1,6 @@
+[
+  {"source": "/nantian-sdn/nw/integration","target":"http://10.12.248.10:8077","pathRewrite":"/nantian-sdn/nw/integration"},
+  {"source": "/nantian-sdn/nw/ip","target":"http://10.12.248.13:8080","pathRewrite":"/nantian-sdn/nw/ip"},
+  {"source": "/nantian-sdn/nw/file","target":"http://10.12.248.13:8080","pathRewrite":"/nantian-sdn/nw/file"},
+  {"source": "/nantian-sdn/nw/southservice","target":"http://10.12.248.11:8092","pathRewrite":"/nantian-sdn/nw/southservice"}
+]
