@@ -17,6 +17,7 @@ var server = {
   fs: "",
   urls: "",
   port: "",
+  curPath: "",
   app: "",
   /*初始化*/
   init() {
@@ -26,6 +27,7 @@ var server = {
     this.fs = require('fs');
     this.urls = require('./urls.js');
     this.port = process.argv[2] || 8000;
+    this.curPath = process.argv[1].slice(0,-8);
     this.app = express();
     this.getProxyTable();
   },
@@ -33,7 +35,7 @@ var server = {
   /*获取代理表*/
   getProxyTable() {
     var content, data, proxyTable = {};
-    content = this.fs.readFileSync('./config/proxyTable.json'),data;
+    content = this.fs.readFileSync(this.curPath + 'config/proxyTable.json');
     data = JSON.parse(content.toString());
     data.forEach(item=> {
       var temObj = {};
