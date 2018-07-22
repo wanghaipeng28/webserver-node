@@ -11,11 +11,14 @@ const PAGES = ["v1.0"]; //配置单页名称（目录名称）
 /*用来定义构建次数*/
 var buildNum = 0;
 
+var serverApp = null;
+
 /**使用node子进程执行shell命令**/
 var exec = require('child_process').exec;
 
 /*从git下载代码*/
-function startBuildPage(path="v1.0"){
+function startBuildPage(path, server){
+  serverApp = server;
   console.log("开始从git下载代码！");
   //git下载代码
   var ch = exec("git pull",
@@ -66,6 +69,7 @@ function buildProductCode(path){
 
 /*最后操作（包括重启服务器）*/
 function finallyOpt(){
+  serverApp.status = "null";
   console.log("前端页面构建完成！！");
 }
 

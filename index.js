@@ -19,6 +19,7 @@ var server = {
   port: "",
   curPath: "",
   app: "",
+  status: "null",
   /*初始化*/
   init() {
     var express = require('express');
@@ -47,7 +48,7 @@ var server = {
       };
       temObj = null;
     });
-    proxyTable["/"] = "/usr/local/nantian-sdn-web/dist";
+    proxyTable["/"] = "usr/local/nantian-sdn-web/dist";
     this.startServer(proxyTable);
     proxyTable = null;
     data = null;
@@ -67,7 +68,7 @@ var server = {
             fileName = urlInfo.pathname,
             fun = this.urls[fileName];
           if (fun) {
-            fun(request, response);
+            fun(request, response, this);
           } else {
             var reg = /\.(jpg|png|html|css|js|woff2)$/;
             if (!reg.test(fileName)) {
