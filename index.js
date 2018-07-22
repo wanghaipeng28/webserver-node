@@ -20,6 +20,7 @@ var server = {
   curPath: "",
   app: "",
   status: "null",
+  steps: [],
   /*初始化*/
   init() {
     var express = require('express');

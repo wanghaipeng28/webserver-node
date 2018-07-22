@@ -7,5 +7,5 @@ var build = require('./main/build');
 module.exports = {
   "/build/get-status": build.getStatus,
   "/build/start": build.build,
-  "/build/resetStatus": build.resetStatus
+  "/build/reset-status": build.resetStatus
 };
