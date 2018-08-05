@@ -7,7 +7,15 @@ var startBuildPage = require("./build-nt-sdn-web.js");
 module.exports = {
   build(request, response, server) {
     server.status = "started";
-    server.steps = ["正在启动构建程序！"];
+    var date = new Date();
+    var time = date.toLocaleDateString() + " " + date.toTimeString();
+    server.steps = [
+      {
+        msg: "正在启动构建程序！",
+        type: "success",
+        time
+      }
+    ];
     setTimeout(()=> {
       startBuildPage("v1.0",server);
     }, 500);
