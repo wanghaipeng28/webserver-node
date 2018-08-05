@@ -4,11 +4,13 @@
 
 var fs = require('fs');
 var url = require('url');
+
 /*当前路径*/
 var curPath = process.argv[1].slice(0,-8);
+var restartServer = require('./restart-server.js');
 
-function returnResponse (res, response) {
-
+function returnResponse (res, response, flag) {
+  flag && restartServer();
   response.writeHead(200, {
     "Content-Type": "application/json;charset=UTF-8",
     "Server": "node-http-server-v1.2"
@@ -56,7 +58,7 @@ module.exports = {
           data: proxyList,
           status: "200"
         };
-        returnResponse(res, response);
+        returnResponse(res, response, true);
       });
     }else{
       res = {
@@ -93,6 +95,6 @@ module.exports = {
         status:"500"
       };
     }
-    returnResponse(res, response);
+    returnResponse(res, response, true);
   }
 };
