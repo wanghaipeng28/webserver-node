@@ -8,7 +8,7 @@ module.exports = {
   build(request, response, server) {
     server.status = "started";
     var date = new Date();
-    var time = date.toLocaleDateString() + " " + date.toTimeString();
+    var time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
     server.steps = [
       {
         msg: "正在启动构建程序！",

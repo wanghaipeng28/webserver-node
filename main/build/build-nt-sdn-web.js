@@ -21,7 +21,7 @@ function startBuildPage(path, server){
   serverApp = server;
   step = "开始从git下载代码！";
   date = new Date();
-  time = date.toLocaleDateString() + " " + date.toTimeString();
+  time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
   console.log(step,time);
   serverApp.steps.push({
         msg: step,
@@ -36,7 +36,7 @@ function startBuildPage(path, server){
       console.log(stdout);
       step = "代码下载完成！";
       date = new Date();
-      time = date.toLocaleDateString() + " " + date.toTimeString();
+      time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
       console.log(step,time);
       serverApp.steps.push({
         msg: step,
@@ -57,7 +57,7 @@ function startBuildPage(path, server){
       step = "代码下载失败！";
       serverApp.status = "null";
       date = new Date();
-      time = date.toLocaleDateString() + " " + date.toTimeString();
+      time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
       console.log(step,time);
       serverApp.steps.push({
         msg: step,
@@ -74,7 +74,7 @@ function buildProductCode(path){
   buildNum++;
   step = "开始构建" + path.slice(1) + "生产环境代码";
   date = new Date();
-  time = date.toLocaleDateString() + " " + date.toTimeString();
+  time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
   console.log(step,time);
   serverApp.steps.push({
     msg: step,
@@ -89,7 +89,7 @@ function buildProductCode(path){
         console.log(stdout);
         step = path.slice(1) + "代码构建完成！";
         date = new Date();
-        time = date.toLocaleDateString() + " " + date.toTimeString();
+        time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
         console.log(step,time);
         serverApp.steps.push({
           msg: step,
@@ -100,7 +100,7 @@ function buildProductCode(path){
         serverApp.status = "null";
         step = path.slice(1) + "代码构建失败！";
         date = new Date();
-        time = date.toLocaleDateString() + " " + date.toTimeString();
+        time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
         console.log(step,time);
         serverApp.steps.push({
           msg: step,
@@ -123,7 +123,7 @@ function finallyOpt(){
 
   step = "前端页面构建完成！！";
   date = new Date();
-  time = date.toLocaleDateString() + " " + date.toTimeString();
+  time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
   console.log(step,time);
   serverApp.steps.push({
     msg: step,
