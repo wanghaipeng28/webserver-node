@@ -7,20 +7,92 @@ var url = require('url');
 /*当前路径*/
 var curPath = process.argv[1].slice(0,-8);
 
+function returnResponse (res, response) {
+
+  response.writeHead(200, {
+    "Content-Type": "application/json;charset=UTF-8",
+    "Server": "node-http-server-v1.2"
+  });
+  response.write(JSON.stringify(res)); //输出响应主体
+  response.end();
+}
+
 module.exports = {
   getProxyList(request, response) {
     var res;
     if(request.method == "GET"){
       var content = fs.readFileSync(curPath + 'config/proxyTable.json');
-      res = content.toString();
+      res = JSON.parse(content.toString());
     }else{
-      res = '{"errMsg":"only support get method","status":"500"}';
+      res = {
+        errMsg:"only support get method",
+        status:"500"
+      };
     }
-    response.writeHead(200, {
-      "Content-Type": "application/json;charset=UTF-8",
-      "Server": "node-http-server-v1.2"
-    });
-    response.write(res); //输出响应主体
-    response.end();
+    returnResponse(res, response);
+  },
+
+  createUpdate(request, response) {
+    var res;
+    if(request.method == "POST"){
+      var str="";
+      request.on("data",function(chunk){
+        str+=chunk;
+      });
+      request.on("end",function(){
+        var content, proxyList, paramData, index;
+        content = fs.readFileSync(curPath + 'config/proxyTable.json');
+        proxyList = JSON.parse(content.toString());
+        paramData = JSON.parse(str);
+        index = paramData.id;
+        delete paramData.id;
+        if(index >=0){
+          proxyList[index] = paramData;
+        }else{
+          proxyList.push(paramData);
+        }
+        fs.writeFileSync(curPath + 'config/proxyTable.json',JSON.stringify(proxyList));
+        res = {
+          data: proxyList,
+          status: "200"
+        };
+        returnResponse(res, response);
+      });
+    }else{
+      res = {
+        errMsg:"only support post method",
+        status:"500"
+      };
+      returnResponse(res, response);
+    }
+  },
+
+  deleteProxy(request, response) {
+    var res;
+    if(request.method == "GET") {
+      var content, proxyList, index;
+      content = fs.readFileSync(curPath + 'config/proxyTable.json');
+      proxyList = JSON.parse(content.toString());
+      index = request.query.id - 0;
+      if(proxyList[index]){
+        proxyList.splice(index,1);
+        fs.writeFileSync(curPath + 'config/proxyTable.json',JSON.stringify(proxyList));
+        res = {
+          data: proxyList,
+          status: "200"
+        };
+      }else{
+        res = {
+          errMsg:"未找到该条目",
+          status:"500"
+        };
+      }
+    }else{
+      res = {
+        errMsg:"only support get method",
+        status:"500"
+      };
+    }
+    returnResponse(res, response);
   }
 };
