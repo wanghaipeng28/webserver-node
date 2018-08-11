@@ -67,7 +67,7 @@ module.exports = {
     }
   },
 
-  deleteProxy(request, response) {
+  deleteProxy(request, response, server) {
     var res;
     if(request.method == "GET") {
       var proxyList, index;
