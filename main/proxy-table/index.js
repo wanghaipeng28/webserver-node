@@ -20,11 +20,10 @@ function returnResponse (res, response, flag) {
 }
 
 module.exports = {
-  getProxyList(request, response) {
-    var res;
+  getProxyList(request, response, server) {
+    let res;
     if(request.method == "GET"){
-      var content = fs.readFileSync(curPath + 'config/proxyTable.json');
-      res = JSON.parse(content.toString());
+      res = server.proxyTable;
     }else{
       res = {
         errMsg:"only support get method",
@@ -34,17 +33,16 @@ module.exports = {
     returnResponse(res, response);
   },
 
-  createUpdate(request, response) {
-    var res;
+  createUpdate(request, response, server) {
+    let res;
     if(request.method == "POST"){
       var str="";
       request.on("data",function(chunk){
         str+=chunk;
       });
       request.on("end",function(){
-        var content, proxyList, paramData, index;
-        content = fs.readFileSync(curPath + 'config/proxyTable.json');
-        proxyList = JSON.parse(content.toString());
+        var proxyList, paramData, index;
+        proxyList = server.proxyTable;
         paramData = JSON.parse(str);
         index = paramData.id;
         delete paramData.id;
@@ -72,9 +70,8 @@ module.exports = {
   deleteProxy(request, response) {
     var res;
     if(request.method == "GET") {
-      var content, proxyList, index;
-      content = fs.readFileSync(curPath + 'config/proxyTable.json');
-      proxyList = JSON.parse(content.toString());
+      var proxyList, index;
+      proxyList = server.proxyTable;
       index = request.query.id - 0;
       if(proxyList[index]){
         proxyList.splice(index,1);

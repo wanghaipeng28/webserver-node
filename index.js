@@ -19,6 +19,7 @@ var server = {
   port: "",
   curPath: "",
   app: "",
+  proxyTable: [],
   status: "null",
   steps: [],
   /*初始化*/
@@ -38,8 +39,8 @@ var server = {
   getProxyTable() {
     var content, data, proxyTable = {};
     content = this.fs.readFileSync(this.curPath + 'config/proxyTable.json');
-    data = JSON.parse(content.toString());
-    data.forEach(item=> {
+    this.proxyTable = JSON.parse(content.toString());
+    this.proxyTable.forEach(item=> {
       var temObj = {};
       temObj["^"+item.source] = item.pathRewrite;
       proxyTable[item.source] = {
