@@ -6,6 +6,7 @@ var startBuildPage = require("./build-nt-sdn-web.js");
 
 module.exports = {
   build(request, response, server) {
+    let query = request.query;
     server.status = "started";
     var date = new Date();
     var time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
@@ -17,8 +18,8 @@ module.exports = {
       }
     ];
     setTimeout(()=> {
-      startBuildPage("v1.0",server);
-    }, 500);
+      startBuildPage(query.path,server);
+    }, 300);
 
     response.writeHead(200, {
       "Content-Type": "application/json;charset=UTF-8",
@@ -37,9 +38,11 @@ module.exports = {
       "Content-Type": "application/json;charset=UTF-8",
       "Server": "node-http-server-v1.1"
     });
+
     var data = {
       status: server.status,
-      steps: server.steps
+      steps: server.steps,
+      pages: server.pageConfig
     };
     response.write(JSON.stringify(data)); //输出响应主体
     response.end();

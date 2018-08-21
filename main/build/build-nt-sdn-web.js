@@ -3,13 +3,10 @@
  */
 
 /*配置常量*/
-const PROJECT_PASH = "/usr/local/nantian-sdn-web/"; //工程目录
+
 const GIT_USER = "git"; //git 用户
 const GIT_PWD = "git"; //git 密码
-const PAGES = ["v1.0"]; //配置单页名称（目录名称）
 
-/*用来定义构建次数*/
-var buildNum = 0;
 
 var serverApp = null,step,date,time;
 
@@ -28,9 +25,11 @@ function startBuildPage(path, server){
         type: "success",
         time
   });
+
+  let fullPath = serverApp.pageConfig[path].path;
   //git下载代码
   var ch = exec("git pull",
-    {"cwd": PROJECT_PASH},
+    {"cwd": fullPath},
     function(error, stdout){
     if(error === null){
       console.log(stdout);
@@ -45,13 +44,7 @@ function startBuildPage(path, server){
       });
 
       /*开始构建生产环境代码*/
-      if(path == "/all"){
-        PAGES.forEach((item)=>{
-          buildProductCode("/" + item);
-        });
-      }else{
-        buildProductCode("/" + path);
-      }
+      buildProductCode(path, fullPath);
 
     }else{
       step = "代码下载失败！";
@@ -70,8 +63,7 @@ function startBuildPage(path, server){
 }
 
 
-function buildProductCode(path){
-  buildNum++;
+function buildProductCode(path, fullPath){
   step = "开始构建" + path.slice(1) + "生产环境代码";
   date = new Date();
   time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
@@ -82,9 +74,8 @@ function buildProductCode(path){
     time
   });
   exec("node build/build.js "+path,
-    {"cwd": PROJECT_PASH},
+    {"cwd": fullPath},
     function(error, stdout){
-      buildNum--;
       if(error === null){
         console.log(stdout);
         step = path.slice(1) + "代码构建完成！";
@@ -110,9 +101,7 @@ function buildProductCode(path){
         console.log(error);
       }
 
-      if(buildNum == 0){
-        finallyOpt();
-      }
+      finallyOpt();
     }
   );
 }

@@ -22,6 +22,7 @@ var server = {
   proxyTable: [],
   status: "null",
   steps: [],
+  pageConfig: {},
   /*初始化*/
   init() {
     var express = require('express');
@@ -32,7 +33,14 @@ var server = {
     this.port = process.argv[2] || 8000;
     this.curPath = process.argv[1].slice(0,-8);
     this.app = express();
+    this.loadPageConfig();
     this.getProxyTable();
+  },
+
+  /*获取页面配置信息*/
+  loadPageConfig() {
+    let content = this.fs.readFileSync(this.curPath + 'config/pages.json');
+    this.pageConfig = JSON.parse(content.toString());
   },
 
   /*获取代理表*/
@@ -50,7 +58,7 @@ var server = {
       };
       temObj = null;
     });
-    proxyTable["/"] = "usr/local/nantian-sdn-web/dist";
+    proxyTable["/"] = "/usr/local/nantian-sdn-web/dist";
     this.startServer(proxyTable);
     proxyTable = null;
     data = null;
