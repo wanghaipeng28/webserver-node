@@ -6,5 +6,9 @@
   "/build": {
     "name": "构建页面",
     "path": "/usr/local/nantian-sdn-web/"
+  },
+  "/salary": {
+    "name": "ERP页面",
+    "path": "/usr/local/nantian-erp/"
   }
 }
