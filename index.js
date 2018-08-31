@@ -80,7 +80,7 @@ var server = {
           if (fun) {
             fun(request, response, this);
           } else {
-            var reg = /\.(jpg|png|html|css|js|woff2)$/;
+            var reg = /\.(jpg|png|html|css|js|woff2|ico)$/;
             if (!reg.test(fileName)) {
               fileName += fileName.slice(-1) == "/" ? "index.html" : "/index.html";
             }
