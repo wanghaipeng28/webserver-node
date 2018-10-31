@@ -54,7 +54,8 @@ var server = {
       proxyTable[item.source] = {
         target: item.target,
         changeOrigin: true,
-        pathRewrite: temObj
+        pathRewrite: temObj,
+        secure: false
       };
       temObj = null;
     });
