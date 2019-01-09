@@ -11,10 +11,6 @@
     "name": "ERP页面",
     "path": "/usr/local/nantian-erp/"
   },
-  "/monitor": {
-    "name": "监控检查",
-    "path": "/usr/local/nantian-sdn-web/"
-  },
   "/echart-web": {
     "name": "仿Kibana页面",
     "path": "/usr/local/elk-vue/"
