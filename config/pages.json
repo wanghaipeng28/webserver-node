@@ -11,7 +11,7 @@
     "name": "ERP页面",
     "path": "/usr/local/nantian-erp/"
   },
-  "/salary": {
+  "/dates": {
     "name": "ERP-日程页面",
     "path": "/usr/local/nantian-erp-dates/"
   }
