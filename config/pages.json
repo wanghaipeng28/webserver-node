@@ -11,8 +11,8 @@
     "name": "ERP页面",
     "path": "/usr/local/nantian-erp/"
   },
-  "/echart-web": {
-    "name": "仿Kibana页面",
-    "path": "/usr/local/elk-vue/"
+  "/salary": {
+    "name": "ERP-日程页面",
+    "path": "/usr/local/nantian-erp-dates/"
   }
 }
