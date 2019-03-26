@@ -7,6 +7,9 @@
 const GIT_USER = "git"; //git 用户
 const GIT_PWD = "git"; //git 密码
 
+/*当前路径*/
+var curPath = process.argv[1].slice(0,-8);
+
 
 var serverApp = null,step,date,time;
 
@@ -108,17 +111,27 @@ function buildProductCode(path, fullPath){
 
 /*最后操作（包括重启服务器）*/
 function finallyOpt(){
-  serverApp.status = "null";
-
-  step = "前端页面构建完成！！";
-  date = new Date();
-  time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
-  console.log(step,time);
-  serverApp.steps.push({
-    msg: step,
-    type: "success",
-    time
-  });
+  exec("./update.sh",
+    {"cwd": curPath+"shell/"},
+    function(error, stdout){
+      serverApp.status = "null";
+      date = new Date();
+      time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+      var type = "success";
+      if(error === null){
+        step = "前端页面构建完成！！";
+      }else{
+        step = "COPY代码发生错误";
+        type = "danger";
+      }
+      console.log(step,time);
+      serverApp.steps.push({
+        msg: step,
+        type,
+        time
+      });
+    }
+  );
 }
 
 /*开始下载代码*/
