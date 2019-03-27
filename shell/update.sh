@@ -1,3 +1,3 @@
 #!/bin/bash
-rm -rf ./*
-cp  -r /usr/local/nantian-erp-dates/dist/* ./
+rm -rf /var/www/html/*
+cp  -r /usr/local/nantian-erp-dates/dist/* /var/www/html/
