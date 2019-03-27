@@ -2,9 +2,5 @@
   "/v1.0": {
     "name": "V1.0",
     "path": "/usr/local/nantian-sdn-web/"
-  },
-  "/build": {
-    "name": "构建页面",
-    "path": "/usr/local/nantian-sdn-web/"
   }
 }
