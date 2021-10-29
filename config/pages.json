@@ -1,6 +1,6 @@
 {
   "/v1.0": {
     "name": "V1.0",
-    "path": "/usr/local/nantian-sdn-web/"
+    "path": "/gwcode/ecloud-portal-ui"
   }
 }

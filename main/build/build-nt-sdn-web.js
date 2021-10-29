@@ -76,7 +76,7 @@ function buildProductCode(path, fullPath){
     type: "success",
     time
   });
-  exec("node build/build.js "+path,
+  exec("npm run build",
     {"cwd": fullPath},
     function(error, stdout){
       if(error === null){
@@ -111,6 +111,17 @@ function buildProductCode(path, fullPath){
 
 /*最后操作（包括重启服务器）*/
 function finallyOpt(){
+  step = "前端页面构建完成！！";
+  time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
+  serverApp.status = "null";
+  console.log(step,time);
+  var type = "success";
+  serverApp.steps.push({
+    msg: step,
+    type,
+    time
+  });
+  return;
   exec("./update.sh",
     {"cwd": curPath+"shell/"},
     function(error, stdout){
@@ -118,6 +129,7 @@ function finallyOpt(){
       date = new Date();
       time = date.toLocaleDateString() + " " + date.toLocaleTimeString();
       var type = "success";
+	  console.log(error)
       if(error === null){
         step = "前端页面构建完成！！";
       }else{

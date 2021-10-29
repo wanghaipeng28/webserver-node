@@ -30,7 +30,7 @@ var server = {
     this.urlModel = require('url');
     this.fs = require('fs');
     this.urls = require('./urls.js');
-    this.port = process.argv[2] || 810;
+    this.port = process.argv[2] || 8000;
     this.curPath = process.argv[1].slice(0,-8);
     this.app = express();
     this.loadPageConfig();

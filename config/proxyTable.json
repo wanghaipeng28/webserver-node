@@ -1,1 +1,1 @@
-[]
+[{"source":"/whp","target":"http://api.ecloud.cpms.tech","pathRewrite":"/"},{"source":"/wsyxxgl","target":"http://localhost:6202","pathRewrite":"/"},{"source":"/wsyxxsc","target":"http://localhost:6203","pathRewrite":"/"}]
