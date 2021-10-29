@@ -59,7 +59,7 @@ var server = {
       };
       temObj = null;
     });
-    proxyTable["/"] = "/usr/local/webserver-node/page";
+    proxyTable["/"] = "/code/webserver-node/page";
     this.startServer(proxyTable);
     proxyTable = null;
     data = null;
