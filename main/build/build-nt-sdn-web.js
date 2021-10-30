@@ -90,6 +90,7 @@ function buildProductCode(path, fullPath){
           type: "success",
           time
         });
+		finallyOpt();
       }else{
         serverApp.status = "null";
         step = path.slice(1) + "代码构建失败！";
@@ -103,8 +104,6 @@ function buildProductCode(path, fullPath){
         });
         console.log(error);
       }
-
-      finallyOpt();
     }
   );
 }
