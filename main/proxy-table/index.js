@@ -41,16 +41,21 @@ module.exports = {
         str+=chunk;
       });
       request.on("end",function(){
-        var proxyList, paramData, index;
+        var proxyList, paramData, source;
         proxyList = server.proxyTable;
         paramData = JSON.parse(str);
-        index = paramData.id;
-        delete paramData.id;
-        if(index >=0){
-          proxyList[index] = paramData;
-        }else{
-          proxyList.push(paramData);
-        }
+        source = paramData.source;
+		let addFlag = true
+        proxyList.forEach(item => {
+          if (item.source === source) {
+            addFlag = false;
+            item.pathRewrite = paramData.pathRewrite;
+            item.target = paramData.target
+          }
+		});
+		if (addFlag) {
+          proxyList.unshift(paramData)
+		}
         fs.writeFileSync(curPath + 'config/proxyTable.json',JSON.stringify(proxyList));
         res = {
           data: proxyList,
@@ -70,11 +75,18 @@ module.exports = {
   deleteProxy(request, response, server) {
     var res;
     if(request.method == "GET") {
-      var proxyList, index;
+      var proxyList, key;
       proxyList = server.proxyTable;
-      index = request.query.id - 0;
-      if(proxyList[index]){
-        proxyList.splice(index,1);
+      key = request.query.key;
+	  let index = false
+      for(let i = 0; i < proxyList.length; i++) {
+	    const item = proxyList[i]
+		if (item.source === key) {
+		  index = i
+		}
+	  }
+      if(index !== false){
+        proxyList.splice(index, 1);
         fs.writeFileSync(curPath + 'config/proxyTable.json',JSON.stringify(proxyList));
         res = {
           data: proxyList,
