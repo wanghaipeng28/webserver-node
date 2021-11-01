@@ -47,7 +47,7 @@ function startBuildPage(path, server){
       });
 
       /*开始构建生产环境代码*/
-      buildProductCode(path, fullPath);
+      finallyOpt();
 
     }else{
       step = "代码下载失败！";
