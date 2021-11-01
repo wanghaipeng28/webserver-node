@@ -59,7 +59,8 @@ var server = {
       };
       temObj = null;
     });
-    proxyTable["/"] = "/code/webserver-node/page";
+    proxyTable["/proxy-config"] = "/code/webserver-node/page";
+    proxyTable["/"] = "/code/webserver-node/app";
     this.startServer(proxyTable);
     proxyTable = null;
     data = null;
@@ -73,7 +74,7 @@ var server = {
       if (typeof options === 'string') {
         options = {target: options}
       }
-      if (context == "/") {
+      if (context == "/proxy-config" || context === '/') {
         this.app.use(context, (request, response)=>{
           var urlInfo = this.urlModel.parse(request.url),
             fileName = urlInfo.pathname,
