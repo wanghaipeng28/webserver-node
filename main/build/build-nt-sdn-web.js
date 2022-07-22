@@ -1,7 +1,3 @@
-/**
- * Created by Nantian on 2018/4/21.
- */
-
 /*配置常量*/
 
 const GIT_USER = "git"; //git 用户

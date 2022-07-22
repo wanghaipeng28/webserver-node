@@ -1,7 +1,3 @@
-/**
- * Created by Nantian on 2018/7/20.
- */
-
 var build = require('./main/build');
 var proxy = require('./main/proxy-table');
 

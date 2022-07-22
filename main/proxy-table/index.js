@@ -1,7 +1,3 @@
-/**
- * Created by Nantian on 2018/8/5.
- */
-
 var fs = require('fs');
 var url = require('url');
 
