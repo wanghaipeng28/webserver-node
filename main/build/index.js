@@ -1,7 +1,3 @@
-/**
- * Created by Nantian on 2018/7/21.
- */
-
 var startBuildPage = require("./build-nt-sdn-web.js");
 
 module.exports = {
