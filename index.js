@@ -1,5 +1,4 @@
 /**
- * Created by Nantian on 2018/7/2.
  * 参考代码======================
  * var express = require('express');
  * var request = require('request');
